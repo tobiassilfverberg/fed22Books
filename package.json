@@ -2,8 +2,9 @@
   "name": "05-prisma-books",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "server.ts",
   "scripts": {
+    "start": "node server.ts",
     "dev": "nodemon server.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
