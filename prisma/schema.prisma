@@ -3,9 +3,8 @@ generator client {
 }
 
 datasource db {
-  provider          = "mysql"
-  url               = env("DATABASE_URL")
-  // shadowDatabaseUrl = env("MYSQL_ADDON_URI")
+  provider = "mysql"
+  url      = env("DATABASE_URL")
 }
 
 model Book {
@@ -16,12 +15,12 @@ model Book {
   authors      Author[]
   publisherId  Int        @db.UnsignedInt
   publisher    Publisher  @relation(fields: [publisherId], references: [id])
+  cover        Json?      @default("{}")
 }
 
 model Author {
   id         Int        @id @default(autoincrement()) @db.UnsignedInt
   name       String
-  birthdate  DateTime?  @db.Date
   books      Book[]
 }
 
@@ -29,4 +28,11 @@ model Publisher {
   id         Int        @id @default(autoincrement()) @db.UnsignedInt
   name       String
   books      Book[]
+}
+
+model User {
+  id        Int         @id @default(autoincrement()) @db.UnsignedInt
+  name      String
+  email     String      @unique
+  password  String
 }
